@@ -3,6 +3,8 @@ package algorithems01;
  * Insertion Sort is the first sort to do.... the first sort
  * in the book. But the class is going to be a chassis for a
  * number of different sorts.
+ * 
+ * This is also the counting sort... very cool!
  */
  
 public class InsertionSort {
@@ -27,17 +29,15 @@ public class InsertionSort {
 		//you want, then print it again!
 		printOut(targetArray);
 		//insertion sort is done and works...
-		//doInsertionSort(targetArray);
+		doInsertionSort(targetArray);
 		
 		//this is just a check to make sure scope is
 		//working the way I think it should.
 		
 		//doZeroForCheck(targetArray);
 		
-		//now working on Merge Sort
-		//doMergeSort(targetArray);
-		
-		doCountingSort(targetArray);
+		// Uncomment the next line, and comment "doInsertionSort..." line
+		//doCountingSort(targetArray);
 		
 		//and print out final results.
 		printOut(targetArray);
@@ -116,62 +116,10 @@ public class InsertionSort {
 	}
 	
 	
-	//I am going to blast my way through this in my
-	//own, klutzy in-elegant way... what do you want?
-	//I'm from Kansas! And my little dog, too!
-	public static void doMergeSort(int[] targetArray){
-		int first = 0;
-		int last = targetArray.length - 1;
-		mergeAndSort(targetArray, first, last);
-	}
-	
-	public static void mergeAndSort(int[] targetArray, int first, int last){
-		if(first < last){
-			//System.out.print("[<" + first + "><" + last + ">]");
-			int middle = (first + last)/2;
-			mergeAndSort(targetArray, first, middle);
-			mergeAndSort(targetArray, middle+1, last);
-			//System.out.print("[<" + first + "><" + middle + "><" + last + ">]");
-			mergeArrays(targetArray, first, middle, last);
-		}
-	}
-	
-	public static void mergeArrays(int[] targetArray, int first, int middle, int last){ 
-		int n1 = middle - first + 1;
-		int n2 = last - middle;
-	
-		int[] leftArray = new int[n1+2];
-		int[] rightArray = new int[n2+2];
-		
-		// copy left side
-		for(int i=1; i < n1; i++){
-			leftArray[i] = targetArray[first+i-1];
-		}
-	
-		leftArray[n1+1] = 99;
-		// copy right side
-		for(int i=0; i < n2; i++){
-			rightArray[i] = targetArray[middle+i];
-		}
-		
-		rightArray[n2+1] = 99;
-		
-		int i = 1;
-		int j = 1;
-		for (int k=first; k < last; k++){
-			if(leftArray[i]<=rightArray[j]){
-				targetArray[k] = leftArray[i++];
-			}
-			else {
-				targetArray[k] = rightArray[j++];
-			}
-		}
-	}
-	
 	public static void printOut(int[] printArray){
 		System.out.println("\n========= THE ARRAY ==========");
 		for(int i = 0; i < printArray.length; i++){
 			System.out.print(printArray[i] + ",");
 		}
 	}
-	}
+}
